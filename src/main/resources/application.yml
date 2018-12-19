@@ -1,0 +1,20 @@
+mybatis:
+  type-aliases-package:com.baizhi.cmfz.entity
+server:
+  port: 8082
+  context-path: /cmfz
+  jsp-servlet:
+    init-parameters:
+      development: true
+spring:
+  datasource:
+    password: 1234
+    username: root
+    url: jdbc:mysql://192.168.0.48:3306/jiayu?charset=utf-8
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  mvc:
+    view:
+      prefix: .jsp
+      suffix: /
+
