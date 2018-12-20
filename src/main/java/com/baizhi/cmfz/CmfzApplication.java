@@ -11,7 +11,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  * @Date 2018/12/19--17:57
  */
 @SpringBootApplication
-@MapperScan(basePackages = "com.baizhi.cmfz.mapper")
+@MapperScan("com.baizhi.cmfz.mapper")
 public class CmfzApplication {
     public static void main(String[] args) {
         SpringApplication.run(CmfzApplication.class,args);

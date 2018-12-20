@@ -6,8 +6,11 @@
     <title>持名法州主页</title>
     <link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="../themes/IconExtension.css">
+    <link rel="stylesheet" type="text/css" href="../themes/icon.css">
     <script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/datagrid-detailview.js"></script>
+    <script type="text/javascript" src="../js/jquery.edatagrid.js"></script>
     <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript">
         <!--菜单处理-->
@@ -27,58 +30,33 @@
                             selected: false,
 
                             onExpand: function () {
-                                $.ajax({
-                                    type: "post",
-                                    url: "${pageContext.request.contextPath}/menu/queryAllChriMenu",
-                                    data: {
-                                        "parentId": menu.id
-                                    },
-                                    dataType: "json",
-                                    success: function (resultc) {
-                                        if (resultc == null) {
-                                            if ($("#tt").tabs("exists", menu.name)) {
-                                                $("#tt").tabs("select", menu.name);
-
-                                            } else {
-                                                $("#tt").tabs("add", {
-                                                    title: menu.name,
-                                                    content: "",
-                                                    closable: true
-
-                                                })
-                                            }
-                                        } else {
-                                            $('#tree'+menu.id ).tree({
-                                                url: "${pageContext.request.contextPath}/menu/queryAllChriMenu?parentId="+menu.id,
-                                                loadFilter: function (data) {
-                                                    console.info(data)
-                                                    if (data.d) {
-                                                        return data.d;
-                                                    } else {
-                                                        return data;
-                                                    }
-                                                },
-                                                onClick: function (node) {
-                                                    var ex = $('#tt').tabs('exists', node.text);
-                                                    if (ex == false) {
-                                                        $('#tt').tabs('add', {
-                                                            title: node.text,
-
-                                                            closable: true,
-                                                        });
-                                                    } else {
-                                                        $('#tt').tabs('select', node.text);
-                                                    }
-                                                }
-                                            });
-
-                                        }
+                            $('#tree'+menu.id ).tree({
+                                url: "${pageContext.request.contextPath}/menu/queryAllChriMenu?parentId="+menu.id,
+                                loadFilter: function (data) {
+                                    console.info(data)
+                                    if (data.d) {
+                                        return data.d;
+                                    } else {
+                                        return data;
                                     }
-                                })
-                            }
+                                },
+                                onClick: function (node) {
+                                    var ex = $('#tt').tabs('exists', node.text);
+                                    if (ex == false) {
+                                        $('#tt').tabs('add', {
+                                            title: node.text,
+                                            href: "${pageContext.request.contextPath}/image/index.jsp",
+                                            closable: true,
+                                        });
+                                    } else {
+                                        $('#tt').tabs('select', node.text);
+                                    }
+                                }
+                            });
+                        }
 
 
-                        });
+                    });
 
                     })
 

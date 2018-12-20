@@ -58,13 +58,6 @@
       <artifactId>lombok</artifactId>
       <version>1.18.4</version>
     </dependency>
-    <!--通用mapper-->
-    <!-- https://mvnrepository.com/artifact/tk.mybatis/mapper -->
-    <dependency>
-      <groupId>tk.mybatis</groupId>
-      <artifactId>mapper</artifactId>
-      <version>4.1.1</version>
-    </dependency>
     <!-- https://mvnrepository.com/artifact/tk.mybatis/mapper-spring-boot-starter -->
     <!--与spring的相关依赖-->
     <dependency>

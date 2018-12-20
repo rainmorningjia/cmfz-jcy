@@ -24,7 +24,34 @@
 			//密码的正则表达式
 			var pPattern=/[0-9a-zA-Z]{6,16}/;
 			//  form 表单提交
+			var b=false;
+			var validName=function(){
+				var name=$("#name").val();
+				if(!reg.test(name)){
+					$("#nameMessage").text("姓名格式不正确！");
+					b=false;
+				}else{
+					$.ajax({
+						type:"post",
+						url:"${pageContext.request.contextPath}/manager/loginManagerName"
+						data:{
+							name:name
+						},
+						dataType:"json",
+						success:function (data) {
+							if (data=="success"){
+								$("#nameMessage").text("验证成功！");
+							}else {
+								$("#nameMessage").text(data);
+							}
+						}
+					})
+				}
 
+			}
+			$("#name").blur(function () {
+				validName();
+			})
 		});
 	</script>
 </head>
@@ -43,16 +70,18 @@
 								用户名:
 							</th>
 							<td>
-								<input id="name" type="text"  name="name" class="text" value="xxx" maxlength="20"/>
+								<input id="name" type="text"  name="name" class="text" value="xxx" maxlength="15" />
 							</td>
+							<td ><span id="nameMessage"  style="font-size: 3px"></span></td>
 					  </tr>
 					  <tr>
 							<th>
 								密&nbsp;&nbsp;&nbsp;码:
 							</th>
 							<td>
-								<input id="password" type="password" name="password" class="text" value="xxx" maxlength="20" autocomplete="off"/>
+								<input id="password" type="password" name="password" class="text" value="xxx" maxlength="15" autocomplete="off"/>
 							</td>
+						 	 <td><span id="passwordMessage"></span></td>
 					  </tr>
 					
 						<tr>

@@ -38,4 +38,19 @@ public class ManagerController {
         }
 
     }
+    @RequestMapping("loginManagerName")
+    @ResponseBody
+    public String loginManagerName(String name){
+        try {
+            Manager manager=managerService.queryManagerByName(name);
+            if (manager==null){
+                return "该用户已存在";
+            }else {
+                return "success";
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return e.getMessage();
+        }
+    }
 }
