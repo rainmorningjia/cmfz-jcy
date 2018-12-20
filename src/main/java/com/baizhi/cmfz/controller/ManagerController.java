@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -20,23 +21,21 @@ public class ManagerController {
     @Resource
     private ManagerService managerService;
     @RequestMapping("loginManager")
-    @ResponseBody
-    public String loginManager(String name,String password){
+    public String loginManager(String name, String password, String code, HttpSession session){
         try {
-            managerService.loginManager(name,password);
-            return "success";
+            code=code.toLowerCase();
+            String codes=(String) session.getAttribute("code");
+            if(!code.equals(codes)){
+                return "login";
+            }else{
+                managerService.loginManager(name,password);
+                return "redirect:/main/main.jsp";
+            }
         }catch (Exception e){
             e.printStackTrace();
             return e.getMessage();
 
         }
 
-    }
-    @ResponseBody
-    @RequestMapping("test")
-
-    public List<Manager> queryTest(){
-        List<Manager> list=managerService.queryAll();
-        return list;
     }
 }

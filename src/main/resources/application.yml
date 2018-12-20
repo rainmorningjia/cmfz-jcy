@@ -1,5 +1,6 @@
 mybatis:
-  type-aliases-package:com.baizhi.cmfz.entity
+  type-aliases-package: com.baizhi.cmfz.entity
+  mapper-locations: classpath:com/baizhi/cmfz/mapper/*Mapper.xml
 server:
   port: 8082
   context-path: /cmfz
