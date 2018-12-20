@@ -26,37 +26,37 @@
                         $("#aa").accordion("add", {
 
                             title: menu.name,
-                            content:htm,
+                            content: htm,
                             selected: false,
 
                             onExpand: function () {
-                            $('#tree'+menu.id ).tree({
-                                url: "${pageContext.request.contextPath}/menu/queryAllChriMenu?parentId="+menu.id,
-                                loadFilter: function (data) {
-                                    console.info(data)
-                                    if (data.d) {
-                                        return data.d;
-                                    } else {
-                                        return data;
+                                $('#tree' + menu.id).tree({
+                                    url: "${pageContext.request.contextPath}/menu/queryAllChriMenu?parentId=" + menu.id,
+                                    loadFilter: function (data) {
+                                        console.info(data)
+                                        if (data.d) {
+                                            return data.d;
+                                        } else {
+                                            return data;
+                                        }
+                                    },
+                                    onClick: function (node) {
+                                        var ex = $('#tt').tabs('exists', node.text);
+                                        if (ex == false) {
+                                            $('#tt').tabs('add', {
+                                                title: node.text,
+                                                href: "${pageContext.request.contextPath}/image/index.jsp",
+                                                closable: true,
+                                            });
+                                        } else {
+                                            $('#tt').tabs('select', node.text);
+                                        }
                                     }
-                                },
-                                onClick: function (node) {
-                                    var ex = $('#tt').tabs('exists', node.text);
-                                    if (ex == false) {
-                                        $('#tt').tabs('add', {
-                                            title: node.text,
-                                            href: "${pageContext.request.contextPath}/image/index.jsp",
-                                            closable: true,
-                                        });
-                                    } else {
-                                        $('#tt').tabs('select', node.text);
-                                    }
-                                }
-                            });
-                        }
+                                });
+                            }
 
 
-                    });
+                        });
 
                     })
 

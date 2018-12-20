@@ -34,7 +34,17 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public void updateIImage(Image image) {
+    public void deleteImage(Integer id) {
+        imageMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void updateImage(Image image) {
         imageMapper.updateByPrimaryKey(image);
+    }
+
+    @Override
+    public void insertImage(Image image) {
+        imageMapper.insert(image);
     }
 }

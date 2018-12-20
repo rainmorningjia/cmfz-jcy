@@ -13,6 +13,8 @@ import java.util.List;
 public interface ImageService {
     public List<Image> queryImageByRow(Integer num1,Integer num2);
     public List<Image> queryAllImage();
-    public void updateIImage(Image image);
+    public void updateImage(Image image);
+    public void deleteImage(Integer id);
+    public void insertImage(Image image);
 
 }
