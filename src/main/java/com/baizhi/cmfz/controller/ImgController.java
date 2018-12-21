@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/img")
 public class ImgController {
+
 	@RequestMapping("createImg")
 	public void createImg(HttpSession session,HttpServletResponse response) throws IOException{
 		CreateValidateCode cvc=new CreateValidateCode();
