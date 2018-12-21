@@ -2,6 +2,7 @@ package com.baizhi.cmfz.controller;
 
 import com.baizhi.cmfz.entity.Image;
 import com.baizhi.cmfz.service.ImageService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -48,6 +49,10 @@ public class ImageController {
         for (String s :
                 idss) {
             Integer id = Integer.parseInt(s);
+            Image image=imagerService.queryImageById(id);
+            String realPath="E:\\IDEA\\workespace\\projectlater\\cmfz-jcy\\src\\main\\webapp\\imageslun";
+            File file=new File(realPath+"/"+image.getImagePath());
+            file.delete();
             imagerService.deleteImage(id);
         }
 
@@ -59,16 +64,23 @@ public class ImageController {
             String realPath="E:\\IDEA\\workespace\\projectlater\\cmfz-jcy\\src\\main\\webapp\\imageslun";
             File descFile=new File(realPath+"/"+file1.getOriginalFilename());
             file1.transferTo(descFile);
-            String  imagename=file1.getOriginalFilename();
-            image.setImagepath(imagename);
+            String  imagepath=file1.getOriginalFilename();
+            image.setImagePath(imagepath);
             imagerService.insertImage(image);
             Date time=new Date(new java.util.Date().getTime());
-            image.setUpdatetime(time);
+            image.setPublishTime(time);
             return "success";
         }catch (Exception e){
             e.printStackTrace();
             return "error";
         }
 
+    }
+    @RequestMapping(value = "testi",produces = "text/html;charset=UTF-8")
+    public List<Image> queryI(){
+        PageHelper.startPage(1,3);
+        List<Image> imageList=imagerService.queryAllImage();
+
+        return imageList;
     }
 }

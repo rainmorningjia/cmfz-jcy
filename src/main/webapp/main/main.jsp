@@ -45,7 +45,7 @@
                                         if (ex == false) {
                                             $('#tt').tabs('add', {
                                                 title: node.text,
-                                                href: "${pageContext.request.contextPath}/image/index.jsp",
+                                                href: "${pageContext.request.contextPath}/"+node.url,
                                                 closable: true,
                                             });
                                         } else {

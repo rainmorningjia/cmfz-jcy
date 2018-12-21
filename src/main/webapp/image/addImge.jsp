@@ -4,8 +4,11 @@
 <script type="text/javascript">
 
     $(function () {
+        //标题
         var reg = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;
-        //定义验证规则
+        //状态
+        var sta=/^[0-1]$/;
+        //定义标题验证规则
         $.extend($.fn.validatebox.defaults.rules, {
             name: {
                 validator: function (value) {
@@ -15,6 +18,11 @@
                 },
                 message: "请输入正确格式"
             },
+            status:{
+                  validator: function (value) {
+                    return sta.test(value);
+                  }
+        }
 
         })
 
@@ -35,16 +43,16 @@
                     success: function (data) {
 
 
-                            //关闭对话框
-                            $("#dialogImg").dialog("close");
-                            //调出系统提示框
-                            $.messager.show({
-                                title: "添加成功",
-                                msg: "恭喜！成功加入列表！",
+                        //关闭对话框
+                        $("#dialogImg").dialog("close");
+                        //调出系统提示框
+                        $.messager.show({
+                            title: "添加成功",
+                            msg: "恭喜！成功加入列表！",
 
-                            }),
-                                //刷新datagrid表格
-                                $("#dbImg").datagrid("reload")
+                        });
+                            //刷新datagrid表格
+                            $("#dbImg").datagrid("reload")
 
                     }
                 })
@@ -56,47 +64,48 @@
     })
 </script>
 
-        <div id="content">
-            <h1>
-                add Image info:
-            </h1>
-            <form id="addImage" method="post" enctype="multipart/form-data">
-                <table >
-                    <tr>
-                        <td valign="middle" align="left" width="30">
-                            title:
-                        </td>
-                        <td valign="middle" align="left" width="200">
-                            <input id="title" type="text" class="easyui-validatebox" name="title"
-                                   data-options="validType:'name',required:true,"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td valign="middle" align="left">
-                            status:
-                        </td>
-                        <td valign="middle" align="left">
-                            <input id="status" type="text" class="easyui-validatebox" name="status"
-                                   data-options="required:true"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td valign="middle" align="left" >
-                            描述:
-                        </td>
-                        <td valign="middle" align="left">
-                            <input id="des" type="text" class="easyui-validatebox" name="description"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td valign="middle" align="left">
-                            上传图片：
-                            <input type="file" name="file1" value="上传"/>
-                    </tr>
-                </table>
-                <p>
-                    <a id="confirm" class="easyui-linkbutton">保存</a>
-                </p>
-            </form>
-        </div>
+<div id="content">
+    <h1>
+        add Image info:
+    </h1>
+    <form id="addImage" method="post" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td valign="middle" align="left" width="30">
+                    title:
+                </td>
+                <td valign="middle" align="left" width="200">
+                    <input id="title" type="text" class="easyui-validatebox" name="title"
+                           data-options="validType:'name',required:true,"/>
+                </td>
+            </tr>
+            <tr>
+                <td valign="middle" align="left">
+                    status:
+                </td>
+                <td valign="middle" align="left">
+                    <input id="status" type="text" class="easyui-validatebox" name="status"
+                           data-options="validType:'status',required:true"/>
+                </td>
+                <td>0代表未展示，1代表展示</td>
+            </tr>
+            <tr>
+                <td valign="middle" align="left">
+                    描述:
+                </td>
+                <td valign="middle" align="left">
+                    <input id="des" type="text" class="easyui-validatebox" name="description"/>
+                </td>
+            </tr>
+            <tr>
+                <td valign="middle" align="left">
+                    上传图片：
+                    <input type="file" name="file1" value="上传"/>
+            </tr>
+        </table>
+        <p>
+            <a id="confirm" class="easyui-linkbutton">保存</a>
+        </p>
+    </form>
+</div>
 </body>

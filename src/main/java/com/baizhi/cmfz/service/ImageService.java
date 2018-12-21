@@ -11,10 +11,16 @@ import java.util.List;
  * @Date 2018/12/20--11:33
  */
 public interface ImageService {
-    public List<Image> queryImageByRow(Integer num1,Integer num2);
-    public List<Image> queryAllImage();
-    public void updateImage(Image image);
-    public void deleteImage(Integer id);
-    public void insertImage(Image image);
+    List<Image> queryImageByRow(Integer num1, Integer num2);
+
+    List<Image> queryAllImage();
+
+    void updateImage(Image image);
+
+    void deleteImage(Integer id);
+
+    void insertImage(Image image);
+
+    Image queryImageById(Integer id);
 
 }

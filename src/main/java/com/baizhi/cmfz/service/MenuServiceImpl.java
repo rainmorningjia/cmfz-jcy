@@ -35,7 +35,6 @@ public class MenuServiceImpl implements MenuService{
     @Override
     public List<Tree> queryAllChrildenMenu(Integer parentId) {
        List<Tree> treeList=new ArrayList<>();
-
         Menu menu=new Menu();
         menu.setParentId(parentId);
         System.out.println(parentId);
@@ -45,12 +44,8 @@ public class MenuServiceImpl implements MenuService{
             Tree tree=new Tree();
             tree.setId(m.getId());
             tree.setText(m.getName());
-            tree.setUrl("#");
+            tree.setUrl(m.getUrl());
             treeList.add(tree);
-        }
-        for (Tree t:
-             treeList) {
-            System.out.println(t);
         }
         return treeList;
     }

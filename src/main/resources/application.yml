@@ -18,4 +18,7 @@ spring:
     view:
       prefix: .jsp
       suffix: /
+  http:
+    converters:
+      preferred-json-mapper: jackson
 

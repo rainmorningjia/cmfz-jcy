@@ -21,7 +21,7 @@ import java.util.List;
 public class MenuController {
     @Resource
     private MenuService menuService;
-    @RequestMapping(value = "queryAllParentMenu",produces = "text/html;charset=UTF-8" )
+    @RequestMapping( "queryAllParentMenu" )
     @ResponseBody
     public List<Menu> queryAllParentMenu(){
         List<Menu> listm=menuService.queryAllParentManu();

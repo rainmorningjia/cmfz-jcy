@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.nio.charset.Charset;
+
 /**
  * @author Miles
  * @Title: FastJsonConfig
@@ -22,6 +24,8 @@ public class FastJsonConfig {
         fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
         //日期格式化
         fastJsonConfig.setDateFormat("yyyy-MM-dd");
+        //编码格式化
+        fastJsonConfig.setCharset(Charset.forName("UTF-8"));
         converter.setFastJsonConfig(fastJsonConfig);
         return new HttpMessageConverters(converter);
     }

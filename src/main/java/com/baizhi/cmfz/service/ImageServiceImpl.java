@@ -44,6 +44,12 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
+    public Image queryImageById(Integer id) {
+        Image image=imageMapper.selectByPrimaryKey(id);
+        return image;
+    }
+
+    @Override
     public void insertImage(Image image) {
         imageMapper.insert(image);
     }
