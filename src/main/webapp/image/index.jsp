@@ -88,6 +88,7 @@
             pagePosition: "bottom",
             pagination: true,
             pageSize: 4,
+            cash:false,
             pageList: [4, 8, 10],
             frozenColumns: [[
                 {field: 'ck', checkbox: true}
@@ -133,7 +134,7 @@
                     }
                 }
             }, {
-                field: "publishTime",
+                field: "publish_time",
                 title: "时间",
                 width: 100,
                 sortable: true,
@@ -153,7 +154,7 @@
                     '<td rowspan=2 style="border:0"><img src="${pageContext.request.contextPath}/imageslun/' + rowData.imagepath + '" style="height:200px;"></td>' +
                     '<td style="border:0">' +
                     '<p style="font-size:20px">description: ' + rowData.description + '</p>' +
-                    '<p style="font-size:20px">path: ' + rowData.imagePath + '</p>' +
+                    '<p style="font-size:20px">path: ' + rowData.imagepath + '</p>' +
                     '</td>' +
                     '</tr></table>';
             },
@@ -171,7 +172,7 @@
                         "title": data.title,
                         "status": data.status,
                         "publishTime": data.publishTime,
-                        "imagePath": data.imagePath,
+                        "imagepath": data.imagepath,
                         "description": data.description
                     },
                     dataType: "json",

@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class AblumServiceImpl implements AlbumService {
+public class AlbumServiceImpl implements AlbumService {
     @Resource
     private ChapterMapper chapterMapper;
     @Resource
@@ -27,10 +27,11 @@ public class AblumServiceImpl implements AlbumService {
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public List<Album> queryAllAlbum() {
-        List<Album> albumList = albumMapper.selectAll();
+    public List<Album> queryAllAlbums(Integer page,Integer rows) {
+        List<Album> albumList = albumMapper.queryAlbumByRow((page-1)*rows, page*rows);
         for (Album a :
                 albumList) {
+            a.setState("closed");
             Chapter chapter = new Chapter();
             chapter.setAlbumId(a.getId());
             List<Chapter> chapterList = chapterMapper.select(chapter);
@@ -67,5 +68,18 @@ public class AblumServiceImpl implements AlbumService {
     @Override
     public void updateAlbum(Album album) {
         albumMapper.updateByPrimaryKey(album);
+    }
+
+    @Override
+    public List<Album> queryAllAlbumsAndChapter() {
+        List<Album> list=albumMapper.selectAll();
+        for (Album a:
+             list) {
+            Chapter chapter = new Chapter();
+            chapter.setAlbumId(a.getId());
+            List<Chapter> chapterList = chapterMapper.select(chapter);
+            a.setChildren(chapterList);
+        }
+        return list;
     }
 }

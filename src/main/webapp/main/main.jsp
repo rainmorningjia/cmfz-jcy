@@ -80,7 +80,7 @@
     </div>
 </div>
 <div data-options="region:'south',split:true" style="height: 40px;background: #5C160C">
-    <div style="text-align: center;font-size:15px; color: #FAF7F7;font-family: 楷体">&copy;百知教育 htf@zparkhr.com.cn</div>
+    <div style="text-align: center;font-size:15px; color: #FAF7F7;font-family: 楷体">&copy;百知教育 moringrain</div>
 </div>
 
 <div data-options="region:'west',title:'导航菜单',split:true" style="width:220px;">

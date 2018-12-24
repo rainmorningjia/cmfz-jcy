@@ -20,7 +20,7 @@
                         $("#albumT").treegrid("reload")
 
                     }
-                })
+                });
             }
 
         })
@@ -51,14 +51,6 @@
                         文件:
                     </td>
                     <td><input name="file1" type="file"/></td>
-                </tr>
-                <tr>
-                    <td>
-                        时长:
-                    </td>
-                    <td>
-                        <input name="duration" type="text" class="easyui-validatebox" data-options="">
-                    </td>
                 </tr>
                 <tr>
                     <td>

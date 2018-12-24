@@ -51,7 +51,7 @@ public class ImageController {
             Integer id = Integer.parseInt(s);
             Image image=imagerService.queryImageById(id);
             String realPath="E:\\IDEA\\workespace\\projectlater\\cmfz-jcy\\src\\main\\webapp\\imageslun";
-            File file=new File(realPath+"/"+image.getImagePath());
+            File file=new File(realPath+"/"+image.getImagepath());
             file.delete();
             imagerService.deleteImage(id);
         }
@@ -65,10 +65,10 @@ public class ImageController {
             File descFile=new File(realPath+"/"+file1.getOriginalFilename());
             file1.transferTo(descFile);
             String  imagepath=file1.getOriginalFilename();
-            image.setImagePath(imagepath);
+            image.setImagepath(imagepath);
             imagerService.insertImage(image);
             Date time=new Date(new java.util.Date().getTime());
-            image.setPublishTime(time);
+            image.setPublish_time(time);
             return "success";
         }catch (Exception e){
             e.printStackTrace();

@@ -28,8 +28,8 @@ public class Image {
     private String title;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JSONField(format = "yyyy-MM-dd")
-    private Date publishTime;
-    private String imagePath;
+    private Date publish_time;
+    private String imagepath;
     private String status;
     private String description;
 }

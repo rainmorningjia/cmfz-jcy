@@ -5,6 +5,13 @@
     $(function () {
         $("#albumForm").form("load","${pageContext.request.contextPath}/album/queryAlbum?id=${param.id}"
         )
+        $("#albumForm").form({
+            onLoadSuccess:function (data) {
+                $("#src").prop("src","${pageContext.request.contextPath}/imageAlbum/"+data.coverImg);
+            }
+            }
+
+        )
     })
 
 </script>
@@ -29,7 +36,7 @@
             <td>
                 CoverImg:
             </td>
-            <td></td>
+            <td><img id="src" src="" style="width: 350px;height: 500px"></td>
         </tr>
         <tr>
             <td>
@@ -65,7 +72,7 @@
             <td>
                 PubDate:
             </td>
-            <td><input class="easyui-datebox" name="pubDate"  readonly="true"/></td>
+            <td><input class="easyui-datebox" name="pub_date"  readonly="true"/></td>
         </tr>
     </table>
 </form>

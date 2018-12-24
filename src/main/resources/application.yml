@@ -21,4 +21,6 @@ spring:
   http:
     converters:
       preferred-json-mapper: jackson
-
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
