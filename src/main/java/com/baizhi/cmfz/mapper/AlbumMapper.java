@@ -14,4 +14,5 @@ import java.util.List;
  */
 public interface AlbumMapper extends BaseMapper<Album> {
     List<Album> queryAlbumByRow(@Param("num1") Integer num1, @Param("num2") Integer num2);
+    List<Album> queryAlbumsOrderByTimeToSix();
 }

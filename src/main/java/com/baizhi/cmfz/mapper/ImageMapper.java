@@ -14,4 +14,5 @@ import java.util.List;
  */
 public interface ImageMapper extends BaseMapper<Image> {
     public List<Image> queryImageByRow(@Param("num1")Integer page, @Param("num2")Integer num2);
+    public List<Image> queryImageOrderByTimeToFive();
 }

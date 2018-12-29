@@ -53,4 +53,10 @@ public class ImageServiceImpl implements ImageService {
     public void insertImage(Image image) {
         imageMapper.insert(image);
     }
+
+    @Override
+    public List<Image> queryImagesByTimeToFive() {
+        List<Image> imageList=imageMapper.queryImageOrderByTimeToFive();
+        return imageList;
+    }
 }

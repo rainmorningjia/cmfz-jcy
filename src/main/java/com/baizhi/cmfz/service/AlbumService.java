@@ -18,5 +18,5 @@ public interface AlbumService {
     void deleteAlbumById(Integer id);
     Album queryAlbumById(Integer id);
     void updateAlbum(Album  album);
-
+    List<Album> queryAlbumsSix();
 }

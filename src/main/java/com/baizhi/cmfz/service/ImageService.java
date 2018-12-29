@@ -22,5 +22,5 @@ public interface ImageService {
     void insertImage(Image image);
 
     Image queryImageById(Integer id);
-
+    List<Image> queryImagesByTimeToFive();
 }

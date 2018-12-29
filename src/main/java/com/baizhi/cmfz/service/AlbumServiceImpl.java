@@ -60,6 +60,7 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Album queryAlbumById(Integer id) {
         Album album = albumMapper.selectByPrimaryKey(id);
         return album;
@@ -71,6 +72,7 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public List<Album> queryAllAlbumsAndChapter() {
         List<Album> list=albumMapper.selectAll();
         for (Album a:
@@ -81,5 +83,12 @@ public class AlbumServiceImpl implements AlbumService {
             a.setChildren(chapterList);
         }
         return list;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
+    public List<Album> queryAlbumsSix() {
+        List<Album> albumList=albumMapper.queryAlbumsOrderByTimeToSix();
+        return albumList;
     }
 }

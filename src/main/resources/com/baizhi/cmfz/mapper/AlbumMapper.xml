@@ -4,4 +4,7 @@
     <select id="queryAlbumByRow" resultType="Album">
         select * from cmfz_album limit #{num1},#{num2}
     </select>
+    <select id="queryAlbumsOrderByTimeToFive" resultType="Album">
+        select * from cmfz_album order by pub_date limit 0,5
+    </select>
 </mapper>

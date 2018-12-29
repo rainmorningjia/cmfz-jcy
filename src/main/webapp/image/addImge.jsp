@@ -64,43 +64,46 @@
     })
 </script>
 
-<div id="content">
+<div >
     <h1>
         add Image info:
     </h1>
     <form id="addImage" method="post" enctype="multipart/form-data">
         <table>
             <tr>
-                <td valign="middle" align="left" width="30">
+                <td >
                     title:
                 </td>
-                <td valign="middle" align="left" width="200">
+                <td >
                     <input id="title" type="text" class="easyui-validatebox" name="title"
                            data-options="validType:'name',required:true,"/>
                 </td>
             </tr>
             <tr>
-                <td valign="middle" align="left">
+                <td >
                     status:
                 </td>
-                <td valign="middle" align="left">
+                <td >
                     <input id="status" type="text" class="easyui-validatebox" name="status"
                            data-options="validType:'status',required:true"/>
                 </td>
-                <td>0代表未展示，1代表展示</td>
+
             </tr>
             <tr>
-                <td valign="middle" align="left">
+                <td >
                     描述:
                 </td>
-                <td valign="middle" align="left">
+                <td >
                     <input id="des" type="text" class="easyui-validatebox" name="description"/>
                 </td>
+                <td>请输入0或1</td>
             </tr>
             <tr>
-                <td valign="middle" align="left">
+            <td>
+                <td align="left">
                     上传图片：
-                    <input type="file" name="file1" value="上传"/>
+                </td>
+                <td align="left"><input type="file" name="file1" value="上传"/></td>
             </tr>
         </table>
         <p>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.cmfz.mapper.UserMapper">
+    <select id="queryWeekUser" resultType="User">
+        <![CDATA[ select * from cmfz_user where  DATE_SUB(CURDATE(), INTERVAL #{date} DAY) <= date(reg_date)]]>
+    </select>
+    <select id="queryAllStudentPrivceMan" resultType="Province">
+        select COUNT(*) value, province name FROM cmfz_user where sex=1 GROUP BY province
+    </select>
+    <select id="queryAllStudentProvinceWomen" resultType="Province">
+        select COUNT(*) value, province name FROM cmfz_user where sex=2 GROUP BY province
+    </select>
+    <select id="queryUserByRow" resultType="User">
+        select * from cmfz_user limit #{num1},#{num2}
+    </select>
+</mapper>

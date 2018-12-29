@@ -4,4 +4,7 @@
     <select id="queryImageByRow" resultType="Image">
         select * from cmfz_image limit #{num1},#{num2}
     </select>
+    <select id="queryImageOrderByTimeToFive" resultType="Image">
+        select * from cmfz_image order by publish_time limit 0,4
+    </select>
 </mapper>

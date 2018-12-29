@@ -107,8 +107,27 @@
       <artifactId>easypoi-web</artifactId>
       <version>3.2.0</version>
     </dependency>
+    <!-- fastfds文件上传-->
+    <dependency>
+      <groupId>com.github.tobato</groupId>
+      <artifactId>fastdfs-client</artifactId>
+      <version>1.26.5</version>
+    </dependency>
+    <dependency>
+      <groupId>io.goeasy</groupId>
+      <artifactId>goeasy-sdk</artifactId>
+      <version>0.3.8</version>
+    </dependency>
   </dependencies>
-
+  <repositories>
+    <repository>
+      <id>goeasy</id>
+      <name>goeasy</name>
+      <url>
+        http://maven.goeasy.io/content/repositories/releases/
+      </url>
+    </repository>
+  </repositories>
   <build>
     <plugins>
       <plugin>
