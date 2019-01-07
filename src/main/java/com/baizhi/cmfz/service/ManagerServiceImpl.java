@@ -4,6 +4,13 @@ import com.baizhi.cmfz.entity.Manager;
 import com.baizhi.cmfz.exception.ManagerException;
 import com.baizhi.cmfz.exception.SystemException;
 import com.baizhi.cmfz.mapper.ManagerMapper;
+import com.baizhi.cmfz.util.Md5Util;
+import com.baizhi.cmfz.util.MybatisUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,14 +33,9 @@ public class ManagerServiceImpl implements  ManagerService {
     @Override
     public void loginManager(String name,String password ) {
                 Manager manager=queryManagerByName(name);
-                if (manager==null) {
-                    throw new ManagerException("该用户不存在!");
-                }
-                if(!manager.getPassword().equals(password)){
-                    throw new ManagerException("密码错误！");
-                }
-
-
+                Subject subject= SecurityUtils.getSubject();
+        AuthenticationToken token=new UsernamePasswordToken(name,password);
+            subject.login(token);
     }
 
     @Override
@@ -69,5 +71,12 @@ public class ManagerServiceImpl implements  ManagerService {
         return list;
     }
 
-
+    @Override
+    public void inserManager(Manager manager) {
+        String salt= Md5Util.getSalt();
+        manager.setSalt(salt);
+        String s=new SimpleHash("MD5",manager.getPassword(),salt,1024).toString();
+        manager.setPassword(s);
+        managerMapper.insert(manager);
+    }
 }

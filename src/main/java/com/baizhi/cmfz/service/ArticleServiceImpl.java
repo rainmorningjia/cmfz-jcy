@@ -44,4 +44,10 @@ public class ArticleServiceImpl implements ArticleService {
     public void deleteArticle(Integer id) {
 
     }
+
+    @Override
+    public Article queryOneById(Integer id) {
+        Article article=articleMapper.selectByPrimaryKey(id);
+        return  article;
+    }
 }

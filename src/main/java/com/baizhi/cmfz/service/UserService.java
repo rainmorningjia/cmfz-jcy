@@ -19,5 +19,9 @@ public interface UserService {
     void inserUser(User user);
     List<User> queryUserByRow(Integer page,Integer rows);
     List<User> queryAllUser();
-
+    void LoginUser(User user);
+    User updataUser(User user);
+    User queryUserByID(Integer id);
+    User queryUserByNickName(String phoen);
+    User queryUserByPhone(String phone);
 }

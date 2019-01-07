@@ -21,16 +21,16 @@
             });
             //姓名的正则表达式
             var reg = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;
+            var regs=/^[a-zA-Z\/ ]{2,20}$/;
             //密码的正则表达式
             var pPattern = /[0-9a-zA-Z]{6,16}/;
             //  form 表单提交
-            var b = false;
+
             //验证姓名的格式与是否存在方法
             var validName = function () {
                 var name = $("#name").val();
-                if (!reg.test(name)) {
+                if (!reg.test(name)&&!regs.test(name)) {
                     $("#nameMessage").text("姓名格式不正确！");
-                    b = false;
                 } else {
                     $.ajax({
                         type: "post",
@@ -42,7 +42,6 @@
                         success: function (data) {
                             if (data == "success") {
                                 $("#nameMessage").text("验证成功！");
-                                b=true;
                             } else {
                                 $("#nameMessage").text(data);
                             }
@@ -62,6 +61,7 @@
             }
             $("#name").blur(function () {
                 validName();
+
             })
         });
     </script>

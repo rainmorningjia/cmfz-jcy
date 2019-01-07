@@ -9,6 +9,7 @@ import tk.mybatis.mapper.annotation.KeySql;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
 
 /**
@@ -32,4 +33,6 @@ public class Image {
     private String imagepath;
     private String status;
     private String description;
+    private String groupname;
+    private String urlname;
 }

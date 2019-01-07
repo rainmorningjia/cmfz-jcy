@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import tk.mybatis.mapper.annotation.KeySql;
 
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -19,6 +20,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "cmfz_user")
 public class User {
     @Id
     @KeySql(useGeneratedKeys = true)
@@ -35,7 +37,9 @@ public class User {
     private String city;
     private String address;
     private Integer status;
+    private String phone;
     @JSONField(format = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date reg_date;
+    private String urlname;
 }

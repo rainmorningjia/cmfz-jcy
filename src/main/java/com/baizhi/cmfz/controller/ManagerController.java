@@ -1,6 +1,8 @@
 package com.baizhi.cmfz.controller;
 import com.baizhi.cmfz.entity.Manager;
 import com.baizhi.cmfz.service.ManagerService;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,21 +24,20 @@ public class ManagerController {
     private ManagerService managerService;
     @RequestMapping("loginManager")
     public String loginManager(String name, String password, String code, HttpSession session){
-        try {
             code=code.toLowerCase();
             String codes=(String) session.getAttribute("code");
             if(!code.equals(codes)){
-                return "login";
+                return "redirect:/main/login.jsp";
             }else{
-                managerService.loginManager(name,password);
-                return "redirect:/main/main.jsp";
+                try {
+                    managerService.loginManager(name,password);
+                    return "redirect:/main/main.jsp";
+                }catch (UnknownAccountException e){
+                    return "redirect:/main/login.jsp";
+                }catch (IncorrectCredentialsException e){
+                    return "redirect:/main/login.jsp";
+                }
             }
-        }catch (Exception e){
-            e.printStackTrace();
-            return e.getMessage();
-
-        }
-
     }
     @RequestMapping("loginManagerName")
     @ResponseBody
@@ -44,7 +45,7 @@ public class ManagerController {
         try {
             Manager manager=managerService.queryManagerByName(name);
             if (manager==null){
-                return "该用户已存在";
+                return "该用户不存在";
             }else {
                 return "success";
             }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
 
 /**
@@ -36,5 +37,9 @@ public class Chapter {
     private Date uploadDate;
     @ExcelIgnore
     private Integer albumId;
+    @Transient
+    private String urlf;
+    @Transient
+    private String group;
 
 }

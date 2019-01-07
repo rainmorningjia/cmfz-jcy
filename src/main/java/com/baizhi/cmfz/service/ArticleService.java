@@ -15,6 +15,6 @@ public interface ArticleService {
     public List<Article> queryArtilcesToTwoByTime();
     public void insertArticle(Article article);
     public void deleteArticle(Integer id);
-
+    public Article queryOneById(Integer id);
 
 }

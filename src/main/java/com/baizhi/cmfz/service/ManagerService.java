@@ -16,4 +16,5 @@ public interface ManagerService {
     public Manager queryManagerById(Integer id);
     public  Manager queryManagerByName(String name);
     public List<Manager> queryAll();
+    public void inserManager(Manager manager);
 }

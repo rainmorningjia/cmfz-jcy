@@ -5,26 +5,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import tk.mybatis.mapper.annotation.KeySql;
 
-import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 /**
  * @author Miles
- * @Title: Manager
- * @ProjectName cmfz
- * @Date 2018/12/19--18:29
+ * @Title: Perm
+ * @ProjectName cmfz-jcy
+ * @Date 2019/1/4--17:59
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="cmfz_manager")//数据库中的表名
-
-public class Manager implements Serializable {
-    @Id
+@Table(name = "cmfz_perm")
+public class Perm {
     @KeySql(useGeneratedKeys = true)
     private Integer id;
-    private String name;
-    private String password;
-    private String salt;
+    private String role;
+    private String perm;
 }

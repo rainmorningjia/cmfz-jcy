@@ -54,7 +54,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public List<User> queryUserByRow(Integer page, Integer rows) {
         List<User> users=userMapper.queryUserByRow((page-1)*rows,rows);
         return users;
@@ -64,5 +63,45 @@ public class UserServiceImpl implements UserService {
     public List<User> queryAllUser() {
         List<User> users=userMapper.selectAll();
         return users;
+    }
+
+    @Override
+    public void LoginUser(User user) {
+        if (userMapper.selectByPrimaryKey(user.getId())==null){
+            throw new RuntimeException("该用户不存在！");
+        }
+        if (!Md5Util.encryption(user.getPassword()+userMapper.selectByPrimaryKey(user.getId()).getSalt()).equals(userMapper.selectByPrimaryKey(user.getId()).getPassword())){
+            throw new RuntimeException("密码不正确！");
+        }
+    }
+
+    @Override
+    public User queryUserByID(Integer id) {
+        User user=userMapper.selectByPrimaryKey(id);
+        return user;
+    }
+
+    @Override
+    public User queryUserByNickName(String nickName) {
+        User usero=new User();
+        usero.setNickname(nickName);
+        User user=userMapper.selectOne(usero);
+        return user;
+    }
+
+    @Override
+    public User queryUserByPhone(String phone) {
+        User user=new User();
+        user.setPhone(phone);
+        User user1=userMapper.selectOne(user);
+        return user1;
+    }
+
+    @Override
+    @Transactional
+    public User updataUser(User user) {
+        userMapper.updateByPrimaryKey(user);
+        User user1=queryUserByID(user.getId());
+        return user1;
     }
 }

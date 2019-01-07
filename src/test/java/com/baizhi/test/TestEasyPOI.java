@@ -2,13 +2,21 @@ package com.baizhi.test;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
+import com.baizhi.cmfz.CmfzApplication;
+import com.baizhi.cmfz.entity.Manager;
 import com.baizhi.cmfz.entity.Student;
+import com.baizhi.cmfz.service.ManagerService;
+import com.github.tobato.fastdfs.domain.fdfs.StorePath;
+import com.github.tobato.fastdfs.domain.proto.storage.DownloadByteArray;
+import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,7 +27,14 @@ import java.util.List;
  * @ProjectName cmfz-jcy
  * @Date 2018/12/24--16:43
  */
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = CmfzApplication.class)
+
 public class TestEasyPOI {
+    @Autowired
+    private FastFileStorageClient storageClient;
+    @Autowired
+    ManagerService managerService;
     @Test
     public void testExport(){
         List<Student> list=new ArrayList<>();
@@ -86,4 +101,35 @@ public class TestEasyPOI {
     public void testDidui(){
         devive(10);
     }
+    @Test
+    public void insertManager(){
+        Manager manager=new Manager();
+        manager.setPassword("123456");
+        manager.setName("jiayu");
+        managerService.inserManager(manager);
+    }
+    @Test
+    public void contextLoads() throws FileNotFoundException {
+        File file=new File("E:\\330f8791c0df729f2bb156fbaf92695b.jpg");
+        FileInputStream inputStream=new FileInputStream(file);
+        StorePath storePath=storageClient.uploadFile(inputStream,file.length(),"jpg",null);
+        System.out.println(storePath.getGroup()+"|"+storePath
+                .getPath());
+
+    }
+    @Test
+    public void testDownload() throws IOException {
+
+        byte[] b = storageClient.downloadFile("group1",
+                "M00/00/00/wKhJh1wjv_6AcXynAAUIAHyUF0s389.xls", new DownloadByteArray());
+        FileOutputStream fileOutputStream = new
+                FileOutputStream("E:\\fds.xls");
+        fileOutputStream.write(b);
+        fileOutputStream.close();
+    }
+    @Test
+    public void testDelete(){
+        storageClient.deleteFile("group1","M00/00/00/wKhJh1wjv_6AcXynAAUIAHyUF0s389.xls");
+    }
+
 }

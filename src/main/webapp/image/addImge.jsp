@@ -7,7 +7,7 @@
         //标题
         var reg = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;
         //状态
-        var sta=/^[0-1]$/;
+        var sta = /^[0-1]$/;
         //定义标题验证规则
         $.extend($.fn.validatebox.defaults.rules, {
             name: {
@@ -18,22 +18,21 @@
                 },
                 message: "请输入正确格式"
             },
-            status:{
-                  validator: function (value) {
+            status: {
+                validator: function (value) {
                     return sta.test(value);
-                  }
-        }
+                }
+            }
 
         })
 
         //定义保存按钮
-        $("#confirm").linkbutton({
+        $("#confirmimg").linkbutton({
             iconCls: "icon-save",
 
             //单击保存按钮触发表单提交事件
             onClick: function () {
                 //提交表单事件
-
                 $("#addImage").form("submit", {
                     url: "${pageContext.request.contextPath}/image/addImage",
                     onSubmit: function () {
@@ -51,8 +50,8 @@
                             msg: "恭喜！成功加入列表！",
 
                         });
-                            //刷新datagrid表格
-                            $("#dbImg").datagrid("reload")
+                        //刷新datagrid表格
+                        $("#dbImg").datagrid("reload")
 
                     }
                 })
@@ -64,42 +63,42 @@
     })
 </script>
 
-<div >
+<div>
     <h1>
         add Image info:
     </h1>
     <form id="addImage" method="post" enctype="multipart/form-data">
         <table>
             <tr>
-                <td >
+                <td>
                     title:
                 </td>
-                <td >
+                <td>
                     <input id="title" type="text" class="easyui-validatebox" name="title"
                            data-options="validType:'name',required:true,"/>
                 </td>
             </tr>
             <tr>
-                <td >
+                <td>
                     status:
                 </td>
-                <td >
+                <td>
                     <input id="status" type="text" class="easyui-validatebox" name="status"
                            data-options="validType:'status',required:true"/>
-                </td>
-
-            </tr>
-            <tr>
-                <td >
-                    描述:
-                </td>
-                <td >
-                    <input id="des" type="text" class="easyui-validatebox" name="description"/>
                 </td>
                 <td>请输入0或1</td>
             </tr>
             <tr>
-            <td>
+                <td>
+                    描述:
+                </td>
+                <td>
+                    <input id="des" type="text" class="easyui-validatebox" name="description"/>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
                 <td align="left">
                     上传图片：
                 </td>
@@ -107,7 +106,7 @@
             </tr>
         </table>
         <p>
-            <a id="confirm" class="easyui-linkbutton">保存</a>
+            <a id="confirmimg" class="easyui-linkbutton">保存</a>
         </p>
     </form>
 </div>

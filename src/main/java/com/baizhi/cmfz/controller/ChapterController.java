@@ -60,11 +60,8 @@ public class ChapterController {
             //获取文件扩展名
             String ext_name= FilenameUtils.getExtension(coverImage);
             //输出流
-            InputStream inputStream=file1.getInputStream();
-            StorePath storePath=storageClient.uploadFile(inputStream,file1.getSize(),ext_name,null);
-            //将文件路径设为组名和文件名
-            chapter.setUrl(storePath.getGroup()+"|"+storePath
-                    .getPath());
+            File file = new File(realPath + "/" + chapter.getUrl());
+            file1.transferTo(file);
             Date time = new Date(new java.util.Date().getTime());
             chapter.setUploadDate(time);
             Album album = albumService.queryAlbumById(chapter.getAlbumId());
@@ -73,6 +70,12 @@ public class ChapterController {
             //怎么获取时长？
             int size=(int)file1.getSize()/(1024*1024);
             chapter.setSize(size+"M");
+            /*
+            InputStream inputStream=file1.getInputStream();
+            StorePath storePath=storageClient.uploadFile(inputStream,file1.getSize(),ext_name,null);
+            //将文件路径设为组名和文件名
+            chapter.setUrlf(storePath.getGroup());
+            chapter.setGroup(storePath.getGroup());*/
             chapterService.insertChapter(chapter);
             return "success";
         } catch (Exception e) {
@@ -90,6 +93,7 @@ public class ChapterController {
                 idS) {
             Chapter chapter = chapterService.queryChapterById(s);
             String realPath = "E:\\IDEA\\workespace\\projectlater\\cmfz-jcy\\src\\main\\webapp\\audio";
+
             File file = new File(realPath + "/" + chapter.getUrl());
             file.delete();
             chapterService.deleteChapter(s);

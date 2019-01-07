@@ -151,7 +151,7 @@
             //细节展示表
             detailFormatter: function (rowIndex, rowData) {
                 return '<table><tr>' +
-                    '<td rowspan=2 style="border:0"><img src="${pageContext.request.contextPath}/imageslun/' + rowData.imagepath + '" style="height:200px;"></td>' +
+                    '<td rowspan=2 style="border:0"><img src="http://192.168.73.136/'+rowData.groupname+'/' + rowData.urlname + '" style="height:200px;"></td>' +
                     '<td style="border:0">' +
                     '<p style="font-size:20px">description: ' + rowData.description + '</p>' +
                     '<p style="font-size:20px">path: ' + rowData.imagepath + '</p>' +
